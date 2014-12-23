@@ -1,0 +1,50 @@
+<!doctype html>
+<html ng-app="app">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title>Test Angular Bootstrap etc.</title>
+        <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="bootstrap-theme.min.css">        
+        <link rel="stylesheet" type="text/css" href="app.css">
+        <link rel="stylesheet" type="text/css" href="loading.css">
+        
+        <script type="text/javascript" src="angular.min.js"></script>
+        <script type="text/javascript" src="angular-animate.min.js"></script>
+        <script type="text/javascript" src="ui-bootstrap-tpls-0.10.0.min.js"></script>
+        
+        <script type="text/javascript" src="dialog.js"></script>
+        <script type="text/javascript" src="app.js"></script>
+    </head>
+    <body ng-controller="AppController">
+
+        <div id="container">
+            <div id="listing" class="round5" >
+            	<div ng-repeat="it in listing" class="listing-item round5" ad-class="list-ele">
+            		{{it.title}}
+            	</div>
+            </div>
+            <div id="detail" class="round5">
+            	{{content}}
+            </div>
+        </div>        
+    </body>    
+</html>
+
+
+
+<!-- resource
+
+{{hello}}
+            <button class="btn btn-primary" ng-click="openDialog()">OpenDialog</button>
+
+<div class="loading" style="width:40px;height:40px;">
+          <div class='ring blue'></div>
+          <div class="content">
+            <span>Loading...</span>
+          </div>
+        </div>
+<script type="text/ng-template" id="test.html">
+    <div>template script html Success.</div>          
+</script>
+
+-->

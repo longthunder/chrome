@@ -1,0 +1,90 @@
+::-webkit-scrollbar {
+width: 15px;
+}/* Track & scroll thickness */
+::-webkit-scrollbar-track {
+background-color:#fff;
+}/* Track color */
+::-webkit-scrollbar-thumb {
+background-color: #ccc;
+/**box-shadow:2px 2px 3px #F6C;**/
+}/* Scroll color */
+::-webkit-scrollbar-thumb:hover {
+background-color: #999;
+}/* Scroll hover color */
+::-webkit-scrollbar-thumb:active {
+background-color: #999;
+}/* Scroll click & drag color */
+
+html{
+	height:100%;
+}
+
+body {	
+	height:100%;
+	margin:0;
+	padding: 20px;
+    font-size: 15px;
+	background : rgb(215, 215, 215);
+}
+
+.round5 {
+	border-radius: 0px;
+	box-shadow:3px 3px 3px #F6C;
+}
+
+#container {
+	height:100%;
+}
+
+#listing {
+	margin-left: 5px;
+	width: calc(30% - 10px);
+	height:100%;
+	float: left;
+	overflow-y: scroll;
+}
+
+.listing-item {
+	float: left;
+	width:100%;
+	background : #FAFEF3;
+	min-height:40px;
+	margin:5px 50px 0 0;
+	cursor: pointer;
+	padding-left:10px;
+}
+
+.ng-animate {
+  -webkit-transition:all linear 1s;
+  -moz-transition:all linear 0.1s;
+  -o-transition:all linear 0.1s;
+  transition:all linear .5s;
+}
+
+
+.list-ele-hover {
+	background : #DDAECD;
+	padding-left:5px;
+}
+
+.list-ele-select {
+	background : #4f9060;
+	padding-left:15px;
+}
+
+#detail {
+	background : rgb(245, 245, 245);
+	margin-left: 5px;
+	width: calc(70% - 10px);
+	height:100%;
+	float: left;
+}
+
+.cubic {
+	height:100px;
+	width: 100px;
+	background: orange;
+	float: left;
+	margin-left: 30px;
+	margin-top: 30px;
+}

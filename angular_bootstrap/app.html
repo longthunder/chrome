@@ -14,17 +14,19 @@
         
         <script type="text/javascript" src="dialog.js"></script>
         <script type="text/javascript" src="app.js"></script>
+        <script type="text/javascript" src="controller.js"></script>
     </head>
     <body ng-controller="AppController">
-
-        <div id="container">
-            <div id="listing" class="round5" >
-            	<div ng-repeat="it in listing" class="listing-item round5" ad-class="list-ele">
-            		{{it.title}}
-            	</div>
-            </div>
-            <div id="detail" class="round5">
-            	{{content}}
+        <div class="container">
+        	<div class="">
+	            <div class="listing" >
+	            	<div ng-repeat="it in listing" class="listing-item round5" ad-class="list-ele">
+	            		{{it.title}}
+	            	</div>
+	            </div>
+	            <div class="content">
+	            	{{content}}
+	            </div>
             </div>
         </div>        
     </body>    

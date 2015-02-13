@@ -1,10 +1,3 @@
-function AppController($scope, $modal) {
-    $scope.listing = [];
-    for(i=0;i<100;i++){
-        $scope.listing.push({title:"title "+i})
-    }
-}
-
 var app = angular.module('app', ['ui.bootstrap', 'ngAnimate']);
 var clickElem = null;
 var UNCLICK = 'unclick'

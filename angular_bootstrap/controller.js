@@ -1,13 +1,13 @@
 function AppController($scope, $http, $sce) {
 	$scope["listing"]= {list:[], listing:true};
 	$scope["content"]= {list:[], content:true};
-	parse($scope, $http, $sce, 'data.html');
-    //$scope.listing = [];
-   // for(i=0;i<10;i++){
-   //     $scope.listing.push({title:"title "+i})
-   // }
+	parse($scope, $http, $sce, 'data.html');    
    	$scope.openUrl = function(url) {
-   		parse($scope, $http, $sce, url);
+   		parse($scope, $http, $sce, url, true);
+  	}
+  	$scope.openNext = function(target) {
+  		var nextUrl = target.next;
+  		parse($scope, $http, $sce, nextUrl , false);
   	}
 }
 
@@ -75,7 +75,7 @@ function parse($scope, $http, $sce, url, clean) {
 
 function triggerResponse($scope, $sce, target, url, data){	
 	console.log('get list size:' + data.list.length);
-
+	target.next = data.next
 	if(target.listing) {
 		$.each(data.list,function(i,idata){
 			if(idata.title == undefined) return;

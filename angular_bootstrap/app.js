@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.bootstrap', 'ngAnimate']);
+var app = angular.module('app', ['ui.bootstrap', 'ngAnimate','infinite-scroll']);
 var clickElem = null;
 var UNCLICK = 'unclick'
 app.directive('listClass', function($animate, $http){

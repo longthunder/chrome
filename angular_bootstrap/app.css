@@ -84,14 +84,11 @@ body {
 	width:92%;
 	word-break:break-all;
 }
-#detail {
-	background : rgb(245, 245, 245);
-	margin-left: 5px;
-	width: calc(70% - 10px);
-	height:100%;
-	float: left;
-}
 
+.content_info {
+	border-top:1px solid #ccc;
+	padding-top:8px;
+}
 .cubic {
 	height:100px;
 	width: 100px;

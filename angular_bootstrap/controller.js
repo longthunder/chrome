@@ -6,8 +6,11 @@ function AppController($scope, $http, $sce) {
    		parse($scope, $http, $sce, url, true);
   	}
   	$scope.openNext = function(target) {
-  		var nextUrl = target.next;
-  		parse($scope, $http, $sce, nextUrl , false);
+  		if(target.next) {
+	  		console.log('start to next page', target)
+	  		var nextUrl = target.next;
+	  		parse($scope, $http, $sce, nextUrl , false);
+  		}
   	}
 }
 
@@ -120,7 +123,7 @@ function triggerResponse($scope, $sce, target, url, data){
 
 function scaleImage(ele) {	
 	$('img', ele).each(function(){
-		this.width = 50;
+		//this.width = 50;
 		//this.height = this.naturalHeight;
 		$(this).bind('load',function(){
 			this.width = Math.min(this.naturalWidth, ele.innerWidth());			

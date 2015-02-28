@@ -1,17 +1,18 @@
 var app = angular.module('app', ['ui.bootstrap', 'ngAnimate']);
 var clickElem = null;
 var UNCLICK = 'unclick'
-app.directive('adClass', function($animate, $http){
+app.directive('listClass', function($animate, $http){
     return function (scope, element, attrs) {
-        var adClass = attrs.adClass
+        var adClass = attrs.listClass
 		element.bind('mouseover', function(){
 		  	$animate.addClass(element, adClass+'-hover');
 		}).bind('mouseout', function(){
 		  	$animate.removeClass(element, adClass+'-hover');
 		}).bind('click', function(){
-            scope.$apply(function(){
-                scope.$parent.content = scope.listing[scope.$index].title;
-            });
+           // scope.$apply(function(){
+                //scope.$parent.content = scope.listing[scope.$index].title;
+            //    parse(scope.$parent, $http, scope.listing.list[scope.$index].url);
+           // });
             console.log(scope.$index)        	
 			$animate.addClass(element, adClass+'-select');
 		  	if(clickElem != null) {

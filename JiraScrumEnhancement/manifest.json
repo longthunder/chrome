@@ -1,0 +1,23 @@
+{
+  "name": "Jira Scrum Enhancement",
+  "version": "2.0",
+  "manifest_version": 2,
+  "description": "@@",
+  "permissions": ["tabs", "notifications", "https://jira/jira/browse/*"],
+  "content_scripts": [{
+      "matches": [
+          "https://*/*"
+      ],
+      "js": [
+            "jquery-1.8.3.js", "angular.js", "ui-bootstrap-tpls-0.7.0.js", 
+            "app.js", "dialog.js", "httpqueue.js", "tpl.js", "task.js", "sort.js"
+            ],
+      "css" : ["bootstrap-combined.min.css"],
+      "run_at": "document_start"
+    }
+  ],
+  "background": {  
+    "scripts": ["jquery-1.8.3.js", "background.js"]  
+  },
+  "update_url": "http://chelappfntews18:9090/jira_scrum_enhancement/updates.xml"
+}

@@ -15,6 +15,7 @@ background-color: #999;
 background-color: #999;
 }/* Scroll click & drag color */
 
+
 html{
 	height:100%;
 }
@@ -25,57 +26,64 @@ body {
 	padding: 20px;
     font-size: 15px;
 	background : rgb(215, 215, 215);
+	font-family: 微软雅黑, Arial, HELVETICA;
 }
-
 .round5 {
 	border-radius: 0px;
 	box-shadow:3px 3px 3px #F6C;
 }
 
 .container {
+	margin:0 auto;
+	text-align:left;
+	padding:0;
 	width:100%;
 	height:100%;
+	background : #EAEEF3;
 }
 
+.left-box{
+	 width:calc(40% - 10px);
+	 height:100%;
+	 float:left;	
+}
+.right-box{
+	width:60%;
+	height:100%;
+	float:left;
+}
 .listing {
 	margin-left: 5px;
-	width: calc(30% - 10px);
+	width: calc(100% - 10px);
 	height:100%;
 	float: left;
-	overflow-y: scroll;
+	overflow-y:auto;
 }
 
 .content {
-	width: 70%;
+	width: 100%;
+	height:100%;
+	float: left;
+	overflow-y:auto;
 }
+
 .listing-item {
 	float: left;
-	width:100%;
+	width:calc(100% - 20px);
 	background : #FAFEF3;
 	min-height:40px;
-	margin:5px 50px 0 0;
+	margin:5px 10px 0 0;
 	cursor: pointer;
 	padding-left:10px;
 }
 
-.ng-animate {
-  -webkit-transition:all linear 1s;
-  -moz-transition:all linear 0.1s;
-  -o-transition:all linear 0.1s;
-  transition:all linear .5s;
+.content_item{
+	background-color : #FAFEF3;
+	margin:20px auto;
+	padding:13px 15px 13px 15px;
+	width:92%;
+	word-break:break-all;
 }
-
-
-.list-ele-hover {
-	background : #DDAECD;
-	padding-left:5px;
-}
-
-.list-ele-select {
-	background : #4f9060;
-	padding-left:15px;
-}
-
 #detail {
 	background : rgb(245, 245, 245);
 	margin-left: 5px;
@@ -91,4 +99,37 @@ body {
 	float: left;
 	margin-left: 30px;
 	margin-top: 30px;
+}
+
+.loading {
+	float:left;
+	text-align:center;
+	width:100%;
+	vertical-align:middle;
+	margin:10px auto;
+}
+.loading img{
+	width:72px;
+	/**height:12px;**/
+	margin:0 auto;
+}
+
+
+
+.ng-animate {
+  -webkit-transition:all linear 1s;
+  -moz-transition:all linear 0.1s;
+  -o-transition:all linear 0.1s;
+  transition:all linear 0.1s;
+}
+
+
+.list-ani-hover {
+	background : #DDAECD;
+	padding-left:5px;
+}
+
+.list-ani-select {
+	background : #4f9060;
+	padding-left:15px;
 }

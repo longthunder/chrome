@@ -6,26 +6,45 @@
         <link rel="stylesheet" type="text/css" href="lib/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="lib/bootstrap-theme.min.css">        
         <link rel="stylesheet" type="text/css" href="app.css">
-        <link rel="stylesheet" type="text/css" href="loading.css">
+        <link rel="stylesheet" type="text/css" href="loading1.css">
+
+         <script type="text/javascript" src="lib/jquery-1.8.3.js"></script>
         
         <script type="text/javascript" src="lib/angular.min.js"></script>
         <script type="text/javascript" src="lib/angular-animate.min.js"></script>
         <script type="text/javascript" src="lib/ui-bootstrap-tpls-0.10.0.min.js"></script>
-        
-        <script type="text/javascript" src="dialog.js"></script>
+                
         <script type="text/javascript" src="app.js"></script>
         <script type="text/javascript" src="controller.js"></script>
+
+        <script type="text/javascript" src="patterns.js"></script>
+        <script type="text/javascript" src="parse.js"></script>
+        <base id="nowUrl" href="" target="_blank"/>
     </head>
-    <body ng-controller="AppController">
+    <body ng-controller="AppController">        
         <div class="container">
-        	<div class="">
+        	<div class="left-box">
 	            <div class="listing" >
-	            	<div ng-repeat="it in listing" class="listing-item round5" ad-class="list-ele">
+	            	<div ng-repeat="it in listing.list" class="listing-item round5" list-class="list-ani" ng-click="openUrl(it.url)">
 	            		{{it.title}}
 	            	</div>
+                    <div class=loading ng-show="listing.loading">
+                        <img src=loading.gif>
+                    </div>
 	            </div>
-	            <div class="content">
-	            	{{content}}
+            </div>
+            <div class="right-box">
+	            <div class="content">	            	
+                    <div ng-repeat="it in content.list" class="content_item round_angle content_font">
+                        <span class="floor_info">{{it.floor}}</span>
+                        <img class="man_pic" ng-src="{{it.user_pic}}">
+                        <span>{{it.user}}</span>
+                        <span class="time_info"> {{it.time}}</span> 
+                        <div ng-bind-html="it.content"></div>
+                    </div>
+                    <div class=loading ng-show="content.loading">
+                        <img src=loading.gif>
+                    </div>
 	            </div>
             </div>
         </div>        

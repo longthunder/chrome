@@ -1,0 +1,21 @@
+{
+  "name": "Click Image Scroll",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  // "update_url": "http://douban-demon.googlecode.com/svn/updates.xml", 
+  "description": "@@",
+  "permissions": ["tabs", "notifications", "http://*/*", "https://*/*"],
+  // "background_page": "html/background.html",
+  "content_scripts": [{
+      "matches": [
+          "http://*/*"
+      ],
+      "js": ["jquery-1.8.3.js", "app.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["http://*/*"],
+      "css": ["app.css"]
+    }
+  ]
+}

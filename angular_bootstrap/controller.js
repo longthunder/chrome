@@ -1,16 +1,28 @@
 function AppController($scope, $http, $sce) {
 	$scope["listing"]= {list:[], listing:true};
 	$scope["content"]= {list:[], content:true};
+	$scope.$watch("content.top",function() {
+		console.log('reset top');
+		
+	})
 	parse($scope, $http, $sce, 'data.html');    
    	$scope.openUrl = function(url) {
    		parse($scope, $http, $sce, url, true);
   	}
+  	$scope.winOpenUrl = function(url) {
+   		window.open(url,'_blank');
+  	}  	
   	$scope.openNext = function(target) {
   		if(target.next) {
 	  		console.log('start to next page', target)
 	  		var nextUrl = target.next;
 	  		parse($scope, $http, $sce, nextUrl , false);
   		}
+  	}
+  	$scope.tryOpen = function() {
+  		if(str = prompt('Open URL:')) {
+			parse($scope, $http, $sce, str, true);
+		}
   	}
 }
 
@@ -38,7 +50,7 @@ function parse($scope, $http, $sce, url, clean) {
 			//target.trigger('request',[url, clean]);
 			target.url = url;
 			if(clean) {
-				target.list = []
+				target.list = [];
 			}
 			target.loading = true;
 			//$scope.$apply()

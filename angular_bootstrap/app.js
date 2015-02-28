@@ -21,7 +21,11 @@ app.directive('listClass', function($animate, $http){
 		  	clickElem = element;
 		}).bind(UNCLICK, function(){
 		  	$animate.removeClass(element, adClass+'-select');
-		});    
+		}).bind('contextmenu', function(){
+            console.log('right click')
+            scope.$eval(attrs.ngContextMenu);
+            return false;
+        });    
     }
 })
 /**

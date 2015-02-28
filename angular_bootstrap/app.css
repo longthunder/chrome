@@ -54,7 +54,7 @@ body {
 }
 .listing {
 	margin-left: 5px;
-	width: calc(100% - 10px);
+	width: calc(100% - 4px);
 	height:100%;
 	float: left;
 	overflow-y:auto;
@@ -69,7 +69,7 @@ body {
 
 .listing-item {
 	float: left;
-	width:calc(100% - 20px);
+	width:calc(100% - 5px);
 	background : #FAFEF3;
 	min-height:40px;
 	margin:5px 10px 0 0;
@@ -80,7 +80,7 @@ body {
 .content_item{
 	background-color : #FAFEF3;
 	margin:20px auto;
-	padding:13px 15px 13px 15px;
+	padding:13px 8px 13px 8px;
 	width:92%;
 	word-break:break-all;
 }
@@ -114,7 +114,10 @@ body {
 	margin:0 auto;
 }
 
-
+.openBtn {
+	float:right;
+	margin:10px 40px 10px 0;
+}
 
 .ng-animate {
   -webkit-transition:all linear 1s;

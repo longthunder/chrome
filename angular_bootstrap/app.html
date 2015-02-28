@@ -37,7 +37,7 @@
 	            </div>
             </div>
             <div class="right-box">
-	            <div class="content" ray-scroll='openNext(content)' ray-pre-dist="400">	            	
+	            <div class="content" ray-scroll='openNext(content)' ray-pre-dist="400" ray-reset-top="content.top">	            	
                     <div ng-repeat="it in content.list" class="content_item round_angle content_font">
                         <span class="floor_info">{{it.floor}}</span>
                         <img class="man_pic" ng-src="{{it.user_pic}}">

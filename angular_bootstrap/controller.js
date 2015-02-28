@@ -1,10 +1,6 @@
 function AppController($scope, $http, $sce) {
 	$scope["listing"]= {list:[], listing:true};
-	$scope["content"]= {list:[], content:true};
-	$scope.$watch("content.top",function() {
-		console.log('reset top');
-		
-	})
+	$scope["content"]= {list:[], content:true,top: 9999};	
 	parse($scope, $http, $sce, 'data.html');    
    	$scope.openUrl = function(url) {
    		parse($scope, $http, $sce, url, true);
@@ -51,6 +47,7 @@ function parse($scope, $http, $sce, url, clean) {
 			target.url = url;
 			if(clean) {
 				target.list = [];
+				target.top = Math.random();
 			}
 			target.loading = true;
 			//$scope.$apply()

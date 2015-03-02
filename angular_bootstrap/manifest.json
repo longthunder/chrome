@@ -10,6 +10,9 @@
    "background": {
     "scripts": []
    },
+   "icons": {
+      "128": "icon128.png"
+   },
    "description": "__MSG_description__",  
    "permissions": [ "notifications", "tabs", "http://*/*", "https://*/*", "contextMenus", "unlimitedStorage", "webRequest", "webRequestBlocking"]  
 }

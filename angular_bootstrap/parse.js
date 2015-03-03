@@ -2,29 +2,35 @@
 	
 function findPattern(link) {
 	var pattern = null;
+	var id = null;
 	for(var i=0;i<patterns_1.length;i++) {
 		var p = patterns_1[i];
-		if(matchLinks(p.links, link)) {
+		var mt = matchLinksWithId(p.links, link);
+		if(mt.rt) {
 			pattern = p;
+			id = mt.id;
 			break;
 		}
 	}
-	return pattern;
+	return {pattern:pattern,id:id};
 }
 
-function matchLinks(links, link) {
+function matchLinksWithId(links, link) {
+	var id = null;
 	for(var i=0;i<links.length;i++) {
 		var _link = links[i];
 		if(_link == link) {
-			return true;
+			return {rt : true};
 		} else {
 			var m = link.match(new RegExp('^'+_link+'$'));
 			if(m != null) {
-				return true;
+				if(m.length > 1) 
+					id = m[1]
+				return {rt : true , id : id};
 			}
 		}
 	}
-	return false;
+	return {rt : false};
 }
 
 function pullDataFromDom(url, elements, pattern) {
@@ -134,13 +140,16 @@ function toObj(html) {
 function Parser(url) {
 	this.m_url = url;
 	this.m_pattern = null;
-	this.m_target = null;		
+	this.m_target = null;
+	this.id = null;
 }
 Parser.prototype = {
 	validate : function() {
-		var pattern = findPattern(this.m_url);
+		var patternWithId = findPattern(this.m_url);
+		var pattern = patternWithId.pattern;
 		if(pattern != null) {
 			this.m_pattern = pattern;
+			this.id = patternWithId.id;
 			return true;
 		}
 		return false;
@@ -155,6 +164,9 @@ Parser.prototype = {
 	target : function() {
 		return this.m_pattern.target;
 	},
+	getId : function() {
+		return this.id;
+	},
 	follow : function() {
 		var follow = this.m_pattern.follow;
 		if(follow && follow.indexOf('@')==0) {
@@ -166,6 +178,9 @@ Parser.prototype = {
 	},
 	encoding : function() {
 		return this.m_pattern.encoding || 'GB2312';
+	},
+	autodisplay : function() {
+		return !!this.m_pattern.autodisplay;
 	}
 }
 

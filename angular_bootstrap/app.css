@@ -28,8 +28,8 @@ body {
 	background : rgb(215, 215, 215);
 	font-family: 微软雅黑, Arial, HELVETICA;
 }
-.round5 {
-	border-radius: 0px;
+.round_angle {
+	border-radius: 5px;
 	box-shadow:3px 3px 3px #F6C;
 }
 
@@ -43,21 +43,32 @@ body {
 }
 
 .left-box{
-	 width:calc(40% - 10px);
+	 width:calc(30% - 4px);
 	 height:100%;
-	 float:left;	
+	 float:left;
+	 overflow-y:hidden;
 }
 .right-box{
-	width:60%;
+	width:70%;
 	height:100%;
 	float:left;
 }
 .listing {
 	margin-left: 5px;
-	width: calc(100% - 4px);
+	width: calc(100% - 6px);
 	height:100%;
 	float: left;
 	overflow-y:auto;
+}
+
+.listing-item {
+	float: left;
+	width:calc(100% - 8px);
+	background : #FAFEF3;
+	min-height:40px;
+	margin:5px 10px 0 0;
+	cursor: pointer;
+	padding:10px 0 0 12px;
 }
 
 .content {
@@ -67,21 +78,11 @@ body {
 	overflow-y:auto;
 }
 
-.listing-item {
-	float: left;
-	width:calc(100% - 5px);
-	background : #FAFEF3;
-	min-height:40px;
-	margin:5px 10px 0 0;
-	cursor: pointer;
-	padding-left:10px;
-}
-
 .content_item{
 	background-color : #FAFEF3;
 	margin:20px auto;
-	padding:13px 8px 13px 8px;
-	width:92%;
+	padding:3px 8px 3px 8px;
+	width:98%;
 	word-break:break-all;
 }
 
@@ -99,21 +100,25 @@ body {
 }
 
 .loading {
-	float:left;
+	float:right;
 	text-align:center;
-	width:100%;
-	vertical-align:middle;
-	margin:10px auto;
+	/*width:100%;
+	vertical-align:middle;*/
+	margin:10px 50px;
 }
 .loading img{
-	width:72px;
+	width:26px;
 	/**height:12px;**/
 	margin:0 auto;
 }
 
 .openBtn {
 	float:right;
-	margin:10px 40px 10px 0;
+	margin:6px 40px 6px 0;
+}
+
+.right {
+	float:right;
 }
 
 .ng-animate {
@@ -126,10 +131,10 @@ body {
 
 .list-ani-hover {
 	background : #DDAECD;
-	padding-left:5px;
+	padding-left:10px;
 }
 
 .list-ani-select {
 	background : #4f9060;
-	padding-left:15px;
+	padding-left:12px;
 }

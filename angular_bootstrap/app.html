@@ -2,7 +2,7 @@
 <html ng-app="app">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <title>Test Angular Bootstrap etc.</title>
+        <title>The Tools</title>
         <link rel="stylesheet" type="text/css" href="lib/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="lib/bootstrap-theme.min.css">        
         <link rel="stylesheet" type="text/css" href="app.css">
@@ -25,29 +25,31 @@
         <div class="container">            
         	<div class="left-box">
                 <div>
+					
                     <input type=button class="btn openBtn" ng-click="tryOpen()" value="Open">
-                </div>
-	            <div class="listing"  ray-scroll='openNext(listing)' ray-pre-dist="400">
-	            	<div ng-repeat="it in listing.list" class="listing-item round5" list-class="list-ani" ng-click="openUrl(it.url)" ng-context-menu="winOpenUrl(it.url)">
-	            		{{it.title}}
-	            	</div>
-                    <div class=loading ng-show="listing.loading">
+					<input type=button class="btn openBtn" value="{{skip}}">
+					<!--input type=text class="btn openBtn" ng-model="content.top"> -->
+					<div class=loading ng-show="listing.loading || content.loading">
                         <img src=loading.gif>
                     </div>
+                </div>
+	            <div class="listing"  ray-scroll='openNext(listing)' ray-scroll-y="listing.top" ray-scroll-threshold="400">
+	            	<div ng-repeat="it in listing.list" class="listing-item round_angle" list-class="list-ani" ng-click="openUrl(it.url)" ng-context-menu="winOpenUrl(it.url)">
+	            		{{it.title}}
+	            	</div>                    
 	            </div>
             </div>
             <div class="right-box">
-	            <div class="content" ray-scroll='openNext(content)' ray-pre-dist="400" ray-reset-top="content.top">	            	
-                    <div ng-repeat="it in content.list" class="content_item round_angle content_font">
+	            <div class="content" ray-scroll='openNext(content)' ray-scroll-threshold="400" ray-scroll-y="content.top">	            	
+                    <div ng-repeat="it in content.list" class="content_item round_angle">
                         <span class="floor_info">{{it.floor}}</span>
                         <img class="man_pic" ng-src="{{it.user_pic}}">
                         <span>{{it.user}}</span>
-                        <span class="time_info"> {{it.time}}</span> 
+                        <span class="time_info"> {{it.time}}</span>
+						<span><input type=button class="btn" ng-click="it.close($index)" value="Close"></span>
                         <div class="content_info" ng-bind-html="it.content"></div>
-                    </div>
-                    <div class=loading ng-show="content.loading">
-                        <img src=loading.gif>
-                    </div>
+						<span><input type=button class="btn" ng-click="it.close($index)" value="Close"></span>
+                    </div>                    
 	            </div>
             </div>
         </div>        

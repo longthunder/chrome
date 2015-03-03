@@ -4,20 +4,25 @@ var mod;
 mod = angular.module('ray-scroll', []);
 
 mod.directive('rayScroll', [
-  '$rootScope', '$window', '$timeout', function($rootScope, $window, $timeout) {
+  '$rootScope', '$parse', '$timeout', function($rootScope, $parse, $timeout) {
     return function (scope, element, attrs) {
-      var rayScroll = attrs.rayScroll;
-      var rayPreDist = parseInt(attrs.rayPreDist,10)
+      var rayScroll = attrs.rayScroll,
+		  rayScrollThreshold = parseInt(attrs.rayScrollThreshold,10);
+
       element.bind('scroll', function(){
-          var ch = element.scrollTop() + element.height();
-          var th = element[0].scrollHeight;
-          if( ch >=  th - rayPreDist) {
-            scope.$eval(attrs.rayScroll);
+		  var top = element.scrollTop() ,
+			  height = element.height(),
+			  scrollHeight = element[0].scrollHeight;
+
+		  $parse(attrs.rayScrollY).assign(scope, top);
+		  scope.$apply();
+          if( top + height >=  scrollHeight - rayScrollThreshold) {
+            scope.$eval(rayScroll);
           }
       })
-      scope.$watch(attrs.rayResetTop,function(n,o) {
+      scope.$watch(attrs.rayScrollY,function(n,o) {
         //console.log("reset top", n,o)
-        element.scrollTop(0)        
+        element.scrollTop(n)        
       }) 
     }
   }

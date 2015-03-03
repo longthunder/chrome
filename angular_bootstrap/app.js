@@ -13,7 +13,7 @@ app.directive('listClass', function($animate, $http){
                 //scope.$parent.content = scope.listing[scope.$index].title;
             //    parse(scope.$parent, $http, scope.listing.list[scope.$index].url);
            // });
-            console.log(scope.$index)        	
+            //console.log(scope.$index)        	
 			$animate.addClass(element, adClass+'-select');
 		  	if(clickElem != null) {
 		  		clickElem.triggerHandler(UNCLICK);

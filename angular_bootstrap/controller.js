@@ -1,6 +1,7 @@
 function AppController($scope, $http, $sce) {
-	$scope["listing"]= {list:[], listing:true};
-	$scope["content"]= {list:[], content:true,top: 9999};	
+	$scope["listing"]= {list:[], listing:true,loading:true};
+	$scope["content"]= {list:[], content:true,top: 0};
+	$scope["skip"] = 0;
 	parse($scope, $http, $sce, 'data.html');    
    	$scope.openUrl = function(url) {
    		parse($scope, $http, $sce, url, true);
@@ -23,7 +24,7 @@ function AppController($scope, $http, $sce) {
 }
 
 function parse($scope, $http, $sce, url, clean) {
-	console.log('start to parse url', url, $scope)
+	console.log('start to parse url', url)
 	if(url.indexOf('javascript') == 0) {
 		return;
 	}
@@ -40,30 +41,36 @@ function parse($scope, $http, $sce, url, clean) {
 
 	var parser = $.parser(url);
 	if(parser.validate()) {
+		var id = parser.getId();
+		if(id && localStorage.getItem(id)) {
+			$scope['skip'] ++ ;
+			console.log("skip that :", id)
+			return;
+		}
 		console.log('get parser for url:' + url, parser.target());
 		var target = $scope[parser.target()];
 		if(target.url != url) {
 			//target.trigger('request',[url, clean]);
-			target.url = url;
-			if(clean) {
-				target.list = [];
-				target.top = Math.random();
-			}
+			target.url = url;			
 			target.loading = true;
 			//$scope.$apply()
 			console.log('ajax request for url:' + url);
 			var success = function(html) {
 				target.loading = false;
-				if(target.url != url) {
-					console.log('skip response for url:' + url);
+				if(target.url != url && !parser.autodisplay()) {
+					console.log('Response is dropped, url:' + url);
 					return;
 				}
-				console.log('get response/nowUrl for url:' + url);				
+				console.log('get response for url:' + url);		
 				$("#nowUrl").attr('href',url);
 				//$scope.$digest()
 				var data = parser.parse(html);
+				if(clean) {
+					target.list = [];
+					target.top = 0;
+				}
 				//console.log(JSON.stringify(data,'','    '))
-				triggerResponse($scope, $sce, target, url, data)
+				triggerResponse($scope, $http, $sce, target, url, data, parser.autodisplay(),id)
 				//target.trigger('response', [url, data, parser.follow(), clean]);
 				$("#nowUrl").attr('href',url);
 				//target.trigger('scroll');
@@ -85,7 +92,7 @@ function parse($scope, $http, $sce, url, clean) {
 	}
 }
 
-function triggerResponse($scope, $sce, target, url, data){	
+function triggerResponse($scope, $http, $sce, target, url, data, autodisplay,id){	
 	console.log('get list size:' + data.list.length);
 	target.next = data.next
 	if(target.listing) {
@@ -100,9 +107,23 @@ function triggerResponse($scope, $sce, target, url, data){
 				title : idata.title + reply,
 				url : idata.link
 			})
+			if(autodisplay) {
+				parse($scope, $http, $sce, idata.link, false)	
+			}
 		});
 	} else {
 		//content
+		//var id = data.id
+		/*if(id) {
+			id = id.replace(/.+\//g,'')
+			id = id.replace(/[^0-9]+/g,'')
+			console.log('id',id)
+			if(localStorage.getItem(id)) {
+				$scope['skip'] ++ ;
+				console.log("skip content :", id)
+				return;
+			}
+		}*/
 		$.each(data.list,function(i,idata){
 			
 			var ep=function(s){return s==undefined?"":s;}
@@ -121,11 +142,17 @@ function triggerResponse($scope, $sce, target, url, data){
 			scaleImage(_content);
 			$('.x-loaded',_content).css('height','')
 			
-			target.list.push({
+			var ct = {
 				user : idata.user,
 				time : idata.time,
-				content: $sce.trustAsHtml(_content.html())
-			})
+				content: $sce.trustAsHtml(_content.html()),
+				close : function(i) {
+					console.log('close id', id)
+					target.list.splice(i,1)
+					localStorage.setItem(id,  new Date())
+				}
+			}
+			target.list.push(ct)
 		});
 	}
 }
@@ -141,6 +168,9 @@ function scaleImage(ele) {
 		//hack for http://club.m.autohome.com.cn/bbs/thread-c-2944-23236337-1.html
 		if($(this).attr('data-original')) {
 			$(this).attr('src', $(this).attr('data-original'))
+		}
+		if($(this).attr('file')) {
+			$(this).attr('src', $(this).attr('file'))
 		}
 	})
 

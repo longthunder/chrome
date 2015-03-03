@@ -14,8 +14,6 @@ var getListPattern = function(mainSel) {
 	return data;
 }
 
-
-
 var FuncDef= {
 	findFirst : function(elements) {
 		if(elements.length>0) {
@@ -571,7 +569,8 @@ var patterns_1 = [
 
 	{
 		links : [
-			'http://162.252.9.3/forum/forum-[0-9]+-[0-9]+.html'
+			'http://162.252.9.3/forum/forum-[0-9]+-[0-9]+.html',
+			'http://38.103.161.137/forum/forum-[0-9]+-[0-9]+.html'
 		],
 		data : { 
 			'list<tbody[id*=normalthread] span[id*=thread]' : {
@@ -590,23 +589,29 @@ var patterns_1 = [
 		},
 		//data : getListPattern('.new span[id*=thread] a'),
 		encoding: 'gbk',
-		target : 'listing'
+		target : 'listing',
+		autodisplay:true
 	},
 	{
 		//post 
 		links : [
-			'http://162.252.9.3/forum/thread-[0-9]+-[0-9]+-[0-9]+.html'
+			'http://162.252.9.3/forum/thread-([0-9]+)-[0-9]+-[0-9]+.html',
+			'http://38.103.161.137/forum/thread-([0-9]+)-[0-9]+-[0-9]+.html'
 		],
 		encoding: 'gbk',
 		data : {
-			 '.nav' : {
+			 '#nav' : {
 				 '/text':'title'
+			 },
+			 '.comment_digg' : {
+				'/href' : 'id'
 			 },
 			 'list<.postmessage:first' : {
 				'$' : 'content'
 			}
 		},
-		target : 'content'
+		target : 'content',
+		autodisplay:true
 	},
 	{
 		//post 
@@ -623,5 +628,66 @@ var patterns_1 = [
 			}			
 		},
 		target : 'content'
-	}
+	},
+
+	////////////////////  thz
+
+	{
+		links : [
+			'http://taohuazu.cc/forum.php'
+		],
+		data : { 
+			'list<h2' : {
+				'a' : {
+					'/href' : 'link',
+					'/text' : 'title',
+					'//href' : 'id'
+				}			
+			}	
+		},
+		//data : getListPattern('.new span[id*=thread] a'),
+		encoding: 'utf-8',
+		target : 'listing'
+	},
+	{
+		links : [
+			'http://taohuazu.cc/forum-[0-9]+-[0-9]+.html'
+		],
+		data : { 
+			'list<tbody[id*=normalthread]' : {
+				'a' : {
+					'/href' : 'link',
+					'/text' : 'title',
+					'//href' : 'id'
+				}				
+			},
+			'.nxt' : {
+				'@findFirst' : 'next'
+			}	
+		},
+		//data : getListPattern('.new span[id*=thread] a'),
+		encoding: 'utf-8',
+		target : 'listing',
+		autodisplay:true
+	},
+	{
+		//post 
+		links : [
+			'http://taohuazu.cc/thread-([0-9]+)-[0-9]+-[0-9]+.html'
+		],
+		encoding: 'utf-8',
+		data : {
+			 '#thread_subject' : {
+				 '/text':'title'
+			 },
+			 '.comment_digg' : {
+				'/href' : 'id'
+			 },
+			 'list<.pct:first' : {
+				'$' : 'content'
+			}
+		},
+		target : 'content',
+		autodisplay:true
+	},
 ];

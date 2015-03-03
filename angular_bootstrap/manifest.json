@@ -1,5 +1,5 @@
 {
-   "name": "angular_bootstrap",
+   "name": "The Tools",
    "manifest_version": 2,
    "version": "1.0.0",
    "app": {
@@ -12,7 +12,7 @@
    },
    "icons": {
       "128": "icon128.png"
-   },
+   },  
    "description": "__MSG_description__",  
    "permissions": [ "notifications", "tabs", "http://*/*", "https://*/*", "contextMenus", "unlimitedStorage", "webRequest", "webRequestBlocking"]  
 }

@@ -454,7 +454,7 @@ var patterns_1 = [
 				 '/text':'title'
 			 },
 			 'list<.web_content_left div.web_left' : {
-				'$.web_list_left' : 'content',
+				'$.post-body' : 'content',
 				'div.tipTop a.s2': {
 					'/text' : 'floor'
 				},

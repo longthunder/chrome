@@ -46,9 +46,9 @@
                         <img class="man_pic" ng-src="{{it.user_pic}}">
                         <span>{{it.user}}</span>
                         <span class="time_info"> {{it.time}}</span>
-						<span><input type=button class="btn" ng-click="it.close($index)" value="Close"></span>
+						<span><input type=button class="btn" ng-click="it.close($index,$event)" value="Close"></span>
                         <div class="content_info" ng-bind-html="it.content"></div>
-						<span><input type=button class="btn" ng-click="it.close($index)" value="Close"></span>
+						<span><input type=button class="btn" ng-click="it.close($index,$event)" value="Close"></span>
                     </div>                    
 	            </div>
             </div>

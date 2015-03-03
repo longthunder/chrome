@@ -146,9 +146,11 @@ function triggerResponse($scope, $http, $sce, target, url, data, autodisplay,id)
 				user : idata.user,
 				time : idata.time,
 				content: $sce.trustAsHtml(_content.html()),
-				close : function(i) {
-					console.log('close id', id)
+				close : function(i, evt) {
+					var height = $(evt.target).parent().parent().outerHeight();
+					console.log('close id', id, height)					
 					target.list.splice(i,1)
+					target.top -= height;
 					localStorage.setItem(id,  new Date())
 				}
 			}
